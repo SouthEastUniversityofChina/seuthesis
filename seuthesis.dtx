@@ -66,7 +66,7 @@
 
 \title{\seuthesis{}~宏包（\fileversion{}版）} % 中文标题
 {——东南大学学位论文~\LaTeX{}~模板} % 中文副标题
-{The \seuthesis{} class (version \fileversion)} % 英文标题
+{The seuthesis class (version \fileversion)}%{The \seuthesis{} class (version \fileversion)} % 英文标题
 {--- The \LaTeX{} template for thesis of Southeast University}%英文副标题
 
 \author{许\quad{}元}{XU Yuan}
@@ -589,7 +589,6 @@
       论文模板生成的范例。
     \item[seuthesis.cls] 东南大学~\LaTeX{}~学位论文稿件类型文件，可用命
       令\CmdMacro{documentclass}{\{sethesis\}} 调用。
-    \item[seuthesis-*.cfg] 供类包或宏包调用的配置文件，有~UNICODE~和~GBK~两种编码。
     \end{description}
   \end{itemize}
 \end{Appendix}
@@ -654,7 +653,7 @@
 %    \begin{macrocode}
 \DeclareOption*{\PassOptionsToClass{\CurrentOption}{scrbook}}
 \ProcessOptions
-\LoadClass[a4paper,10.5pt,tablecaptionabove]{scrbook}
+\LoadClass[a4paper,tablecaptionabove]{scrbook}
 \let\todayeng\today
 %    \end{macrocode}
 % 
@@ -686,19 +685,17 @@
 %    \end{macrocode}
 %
 %    \begin{macrocode}
-\RequirePackage[CJKnumber,slantfont,boldfont]{xeCJK}
+\RequirePackage[slantfont,boldfont]{xeCJK}
+\RequirePackage{CJKnumb}
 \RequirePackage{CJKulem}
 \newlength\CJK@twochars
-\def\CJK@spaceChar{\Unicode{48}{7}}
+%\def\CJK@spaceChar{\Unicode{48}{7}}
 \def\CJKindent{%
-    \settowidth\CJK@twochars{\CJK@spaceChar\CJK@spaceChar}%
+    \settowidth\CJK@twochars{两字}%\CJK@spaceChar\CJK@spaceChar}%
     \parindent\CJK@twochars}
 
 \RequirePackage{hyperref}
 \AtBeginDocument{\CJKindent{}%
-    \InputIfFileExists{seuthesis-utf8.cfg}% 引入配置文件
-    {\typeout{[seuthesis]: Load seuthesis-utf8.cfg successfully!}}%
-    {\typeout{[seuthesis]: Load seuthesis-utf8.cfg failed!}}%
     \makeindex%
     \wuhao%
     \linespacing{\mainlineskip}
@@ -722,6 +719,7 @@
 \RequirePackage[pagestyles, rm]{titlesec}
 \RequirePackage{titletoc} % 设置目录
 \hypersetup{bookmarksnumbered=true}%书签中章节编号
+\RequirePackage{ulem} % 本科论文标题要求
 %    \end{macrocode}
 % 
 % 
@@ -729,6 +727,8 @@
 %    \begin{macrocode}
 \defaultfontfeatures{Mapping=tex-text} % --- as em-dash
 \setCJKmainfont{SimSun}
+\setCJKsansfont{SimHei}
+\setCJKmonofont{SimSun}
 \setCJKfamilyfont{zhsong}{SimSun}
 \newcommand{\song}{\CJKfamily{zhsong}}
 \setCJKfamilyfont{zhhei}{SimHei}
@@ -1584,12 +1584,8 @@
 
 
 % \section{中文关键字映射}
-% 将包含中文的代码放在\texttt{seuthesis-*.cfg}中，可以直接转换成不同版
-% 本的编码，可以只要一份代码实现两种编码格式。
 % \subsection{正文之前部分}
 %    \begin{macrocode}
-%<*cfg>      
-\ProvidesFile{seuthesis.cfg}
 \makeatletter
 \newcommand{\universityname}{东南大学}
 \newcommand{\universitynameeng}{Southeast University}
@@ -1782,7 +1778,6 @@
 \renewcommand{\bibname}{参考文献}
 \makeatother
 \IndexPrologue{\chapter*{索\quad 引}}
-%</cfg> 
 %    \end{macrocode}
 % 
 % \Finale \RecordChanges

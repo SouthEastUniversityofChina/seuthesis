@@ -66,7 +66,7 @@
 
 \title{\seuthesis{}~宏包（\fileversion{}版）} % 中文标题
 {——东南大学学位论文~\LaTeX{}~模板} % 中文副标题
-{The \seuthesis{} class (version \fileversion)} % 英文标题
+{The seuthesis class (version \fileversion)}%{The \seuthesis{} class (version \fileversion)} % 英文标题
 {--- The \LaTeX{} template for thesis of Southeast University}%英文副标题
 
 \author{许\quad{}元}{XU Yuan}
@@ -685,12 +685,13 @@
 %    \end{macrocode}
 %
 %    \begin{macrocode}
-\RequirePackage[CJKnumber,slantfont,boldfont]{xeCJK}
+\RequirePackage[slantfont,boldfont]{xeCJK}
+\RequirePackage{CJKnumb}
 \RequirePackage{CJKulem}
 \newlength\CJK@twochars
-\def\CJK@spaceChar{\Unicode{48}{7}}
+%\def\CJK@spaceChar{\Unicode{48}{7}}
 \def\CJKindent{%
-    \settowidth\CJK@twochars{\CJK@spaceChar\CJK@spaceChar}%
+    \settowidth\CJK@twochars{两字}%\CJK@spaceChar\CJK@spaceChar}%
     \parindent\CJK@twochars}
 
 \RequirePackage{hyperref}
